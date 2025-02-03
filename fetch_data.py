@@ -4,8 +4,6 @@
 # Import
 import yfinance as yf
 import pandas as pd
-import os
-print(os.getcwd())  
 
 # Define the stock ticker symbol
 ticker = "AAPL" #Exp:Apple
