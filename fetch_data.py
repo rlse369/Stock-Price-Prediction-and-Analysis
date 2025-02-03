@@ -25,6 +25,6 @@ print("Net Income:", financials.loc["Net Income"].iloc[0])
 print("EPS:", financials.loc["Diluted EPS"].iloc[0])
 
 # Save to CSV for analysis
-df.to_csv("apple_stock_data.csv", index=False)
-
+df.to_csv("C:/Users/rache/Downloads/apple_stock_data.csv")
+print(df.head())
 print("Apple stock data saved successfully!")

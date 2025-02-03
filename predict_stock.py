@@ -6,7 +6,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 
 # Load data
-df = pd.read_csv("apple_stock_data.csv", usecols=["Date", "Close"], parse_dates=["Date"], index_col="Date")
+df = pd.read_csv("C:/Users/rache/Downloads/apple_stock_data.csv", usecols=["Date", "Close"], parse_dates=["Date"], index_col="Date")
 
 # Scale data
 scaler = MinMaxScaler(feature_range=(0,1))
