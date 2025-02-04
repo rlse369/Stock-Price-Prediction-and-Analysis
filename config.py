@@ -12,6 +12,8 @@ LSTM_MODEL_FILE = os.path.join(MODEL_DIR, "lstm_model.h5")
 
 # Stock Ticker
 TICKER = "AAPL"  # Apple Stock
+START_DATE = "2024-01-01"
+END_DATE = "2024-12-31"
 
 # LSTM Model Parameters
 SEQUENCE_LENGTH = 50
