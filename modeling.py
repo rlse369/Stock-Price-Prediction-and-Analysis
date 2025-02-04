@@ -1,8 +1,9 @@
+import keras
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout
+from tensorflow.keras.layers import LSTM, Dense, Dropout, Input
 from sklearn.preprocessing import MinMaxScaler
 from config import PROCESSED_DATA_FILE, LSTM_MODEL_FILE, MODEL_DIR
 import os
@@ -33,13 +34,20 @@ def prepare_data():
 
 def build_lstm_model():
     """Build and compile LSTM model"""
-    model = Sequential([
-        LSTM(50, return_sequences=True, input_shape=(50, 1)),
-        Dropout(0.2),
-        LSTM(50, return_sequences=False),
-        Dropout(0.2),
-        Dense(1)
-    ])
+    model = Sequential()
+
+    # Add Input layer to specify input shape (sequence_length, 1)
+    model.add(Input(shape=(50, 1)))  # 50 is the sequence length
+
+    # LSTM layers
+    model.add(LSTM(50, return_sequences=True))
+    model.add(Dropout(0.2))
+
+    model.add(LSTM(50, return_sequences=False))
+    model.add(Dropout(0.2))
+
+    # Dense layer for the output
+    model.add(Dense(1))
 
     model.compile(optimizer='adam', loss='mean_squared_error')
     return model
@@ -56,8 +64,10 @@ def train_model():
     os.makedirs(MODEL_DIR, exist_ok=True)
 
     # Save the trained model
-    model.save(LSTM_MODEL_FILE)
-    print(f"Model saved at {LSTM_MODEL_FILE}")
+    model_save_path = os.path.join(MODEL_DIR, "my_model.keras")  # Ensure correct path
+    model.save(model_save_path)  # Correct way to save the model
+    print(f"Model saved at {model_save_path}")
+
 
 if __name__ == "__main__":
     train_model()
