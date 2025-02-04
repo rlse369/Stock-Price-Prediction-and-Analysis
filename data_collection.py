@@ -31,3 +31,4 @@ def fetch_stock_data():
 
 if __name__ == "__main__":
     fetch_stock_data()
+
