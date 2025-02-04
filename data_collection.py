@@ -1,33 +1,33 @@
-# Import Required Libraries
-# Install
-# pip install pandas yfinance matplotlib seaborn
-# Import
 import yfinance as yf
 import pandas as pd
+import os
+from stock_analysis_project.config import RAW_DATA_FILE, TICKER, START_DATE, END_DATE, DATA_DIR
 
-# Define the stock ticker symbol
-ticker = "AAPL" #Exp:Apple
+def fetch_stock_data():
+    """Fetch Apple stock data and save as CSV"""
+    stock = yf.Ticker(TICKER)
+    
+    # Fetch historical data
+    historical_data = stock.history(start=START_DATE, end=END_DATE)
 
-# Fetch the stock data
-apple_stock_data = yf.Ticker(ticker)
+    # Reset index to access 'Date' as a column
+    historical_data.reset_index(inplace=True)
 
-# Get historical market data
-history_data = apple_stock_data.history(period="1y")
+    # Convert 'Date' to datetime and remove time component
+    historical_data['Date'] = historical_data['Date'].dt.strftime('%Y-%m-%d')
 
-# Customise date range
-historical_data = apple_stock_data.history(start="2024-01-01", end="2024-12-31")
+    # Select and rename columns
+    selected_columns = historical_data[['Date', 'Open', 'High', 'Low', 'Close', 'Volume']]
+    selected_columns = selected_columns.rename(columns={'Open': 'Open Prices', 'Close': 'Close Prices', 'Volume': 'Trading Volume'})
 
-# Reset index to access 'Date' as a column
-historical_data.reset_index(inplace=True)
+    # Ensure 'data/' directory exists
+    os.makedirs(DATA_DIR, exist_ok=True)
 
-# Convert 'Date' to datetime and remove time and timezone
-historical_data['Date'] = pd.to_datetime(historical_data['Date']).dt.strftime('%Y-%m-%d')
+    # Save to CSV
+    selected_columns.to_csv(RAW_DATA_FILE, index=False)
+    print(f"Stock data saved at {RAW_DATA_FILE}")
 
-# Select only the required columns and rename
-selected_columns = historical_data[['Date', 'Open', 'High', 'Low', 'Close', 'Volume']]
-selected_columns = selected_columns.rename(columns={'Open': 'Open Prices', 'Close': 'Close Prices', 'Volume': 'Trading Volume'})
+    return selected_columns  # Return DataFrame for further use
 
-# Save to CSV for analysis
-selected_columns.to_csv("C:/Users/rache/Downloads/apple_stock_data.csv", index=False)
-
-print("Apple stock data saved successfully!")
+if __name__ == "__main__":
+    fetch_stock_data()
