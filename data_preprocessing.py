@@ -10,7 +10,7 @@ def preprocess_data():
     data['Date'] = pd.to_datetime(data['Date'])
 
     # Handle missing values (Fill with previous values or drop)
-    data.fillna(method='ffill', inplace=True)
+    data.ffill(inplace=True)
 
     # Normalize numerical features (optional, useful for modeling)
     numerical_cols = ['Open Prices', 'High', 'Low', 'Close Prices', 'Trading Volume']
