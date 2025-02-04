@@ -1,5 +1,5 @@
 import pandas as pd
-from stock_analysis_project.config import PROCESSED_DATA_FILE
+from config import PROCESSED_DATA_FILE
 
 def create_features():
     """Generate lag features and technical indicators"""

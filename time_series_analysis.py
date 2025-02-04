@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
-from stock_analysis_project.config import PROCESSED_DATA_FILE
+from config import PROCESSED_DATA_FILE
 
 def analyze_trends():
     """Decompose and visualize stock price trends and seasonality"""

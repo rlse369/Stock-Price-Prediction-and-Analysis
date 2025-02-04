@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from stock_analysis_project.config import PROCESSED_DATA_FILE
+from config import PROCESSED_DATA_FILE
 
 def load_data():
     """Load the processed stock data"""

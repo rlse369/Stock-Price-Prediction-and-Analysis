@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from stock_analysis_project.config import RAW_DATA_FILE
+from config import RAW_DATA_FILE
 
 # Load stock data
 def load_data():

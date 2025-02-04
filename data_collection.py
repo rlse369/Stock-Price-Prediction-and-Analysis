@@ -1,7 +1,7 @@
 import yfinance as yf
 import pandas as pd
 import os
-from stock_analysis_project.config import RAW_DATA_FILE, TICKER, START_DATE, END_DATE, DATA_DIR
+from config import RAW_DATA_FILE, TICKER, START_DATE, END_DATE, DATA_DIR
 
 def fetch_stock_data():
     """Fetch Apple stock data and save as CSV"""

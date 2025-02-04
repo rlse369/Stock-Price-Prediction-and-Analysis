@@ -4,7 +4,7 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from sklearn.preprocessing import MinMaxScaler
-from stock_analysis_project.config import PROCESSED_DATA_FILE, LSTM_MODEL_FILE, MODEL_DIR
+from config import PROCESSED_DATA_FILE, LSTM_MODEL_FILE, MODEL_DIR
 import os
 
 def prepare_data():
